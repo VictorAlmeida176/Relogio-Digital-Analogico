@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .Relogio{
+            width: 15rem;
+            height: 15rem;
+            border: 10px solid gray;
+            border-radius: 10%;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pulseira_top{
+            width: 110px;
+            height:9.5rem;
+            border-left:3px solid gray;
+            border-right:3px solid gray;
+            background-color: goldenrod;
+          
+        }
+        .pulseira_bottom{
+            height: 10rem;
+            width: 110px;
+            border-left:3px solid gray;
+            border-right:3px solid gray;
+            background-color: goldenrod;
+        }
+
+        .botao{
+            width: 30px;
+            height: 30px;
+            border:3px solid gray;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            bottom: 150px;
+        }
+
+        .Relogio h1{
+            font-size: 3rem;
+            color:#ff000f;
+            font-family: monospace;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="pulseira_top"></div>
+
+    <div class="Relogio">
+        <h1 class="hora">00:00:00</h1>
+        <div class="botao"></div>
+    </div>
+
+    <div class="pulseira_bottom"></div>
+
+    <script>
+        let horarioRelogio= document.querySelector(".hora")
+        let btn = document.querySelector(".botao").addEventListener("click",()=>{
+            horarioRelogio.innerHTML= "00:00:00"
+            window.location.href= 'index.html'
+        })
+
+        function configHora(){
+            let H = new Date()
+            let hora = H.getHours()
+            let minut = H.getMinutes()
+            let seconds = H.getSeconds()
+
+            horarioRelogio.innerHTML= `${arrumaSegundos(hora)}:${arrumaSegundos(minut)}:${arrumaSegundos(seconds)}`
+
+        }
+
+        function arrumaSegundos(time){
+            if(time<10){
+                return "0"+time;
+            }else{
+                return time
+            }
+        }
+
+        setInterval(configHora,1000)
+        configHora()
+    </script>
+</body>
+</html>
